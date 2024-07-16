@@ -15,7 +15,7 @@ public class Main {
 
         while (true) {
             printMenu();
-            String command = scanner.nextLine();
+            String command = scanner.nextLine().trim();
 
             switch (command) {
                 case "1":
@@ -25,7 +25,10 @@ public class Main {
                     generateDishCombo();
                     break;
                 case "3":
+                    System.out.println("Программа завершена, до скорой встречи!");
                     return;
+                default:
+                    System.out.println("Вы ввели неккоретную команду!");
             }
         }
     }
