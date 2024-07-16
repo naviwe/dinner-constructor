@@ -1,11 +1,13 @@
 package ru.practicum.dinner;
 
 import java.util.Scanner;
+import java.util.ArrayList;
 
 public class Main {
 
     static DinnerConstructor dc;
     static Scanner scanner;
+
 
     public static void main(String[] args) {
         dc = new DinnerConstructor();
@@ -40,8 +42,8 @@ public class Main {
         String dishType = scanner.nextLine();
         System.out.println("Введите название блюда:");
         String dishName = scanner.nextLine();
+        dc.addNewDish(dishType, dishName);
 
-        // добавьте новое блюдо
     }
 
     private static void generateDishCombo() {
@@ -50,16 +52,20 @@ public class Main {
         System.out.println("Введите количество наборов, которые нужно сгенерировать:");
         int numberOfCombos = scanner.nextInt();
         scanner.nextLine();
-
+        ArrayList<String> randomDishes = new ArrayList<>();
         System.out.println("Вводите типы блюда, разделяя символом переноса строки (enter). Для завершения ввода введите пустую строку");
         String nextItem = scanner.nextLine();
 
         //реализуйте ввод типов блюд
         while (!nextItem.isEmpty()) {
-
+            if (dc.menu.containsKey(nextItem)) {
+                randomDishes.add(nextItem);
+            } else {
+                System.out.println("Такого типа блюд нету, введите другой.");
+            }
+            nextItem = scanner.nextLine();
         }
-
-        // сгенерируйте комбинации блюд и выведите на экран
+        dc.generateDishCombo(numberOfCombos, randomDishes);
 
     }
 }
